@@ -1,4 +1,4 @@
-package Numeros;
+package Ejercicio2;
 import becker.robots.*;
 
 
