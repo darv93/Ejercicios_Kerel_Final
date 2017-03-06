@@ -6,218 +6,110 @@
 package Ejercicio5_1;
 
 import becker.robots.*;
-/**
- *
- * @author Usuario
- */
+import java.awt.Color;
+
+
 public class Ladrillos {
+       
+    private City un;
     private Robot joe;
-    private City unal;
-    private Thing balon;
     private Wall pared;
-    private boolean a[][];
-    
-public Ladrillos(){
-      this.a=new boolean [5][5];
-      this.unal=new City(10,13);
-      this.joe=new Robot(unal,9,1,Direction.NORTH);
-        for(int i=0;i<=4;i++){
-            for(int j=0;j<=4;j++){
-                if(i==0 || i==4){
-                    if(j % 2 !=0){
-                    this.a[i][j]=true;
-                    this.balon=new Thing(unal,i+4,j+1);}
-                }
-                if(j==4 || j==0){
-                    if(i % 2 !=0){
-                    this.a[j][i]=true;
-                    this.balon=new Thing(unal,i+4,j+1);}
-                }
-            }
+    private Thing ball;
+    private boolean l[][];
+
+    public Ladrillos() {
+        this.un = new City(12,14);
+        this.joe = new Robot(this.un,10,1,Direction.NORTH);            
+        this.l = new boolean[5][5];
+        for(int k=0; k<5;k++){
+        for(int j=0;j<5;j++){            
+        this.l[k][j]=false; 
         }
+        }
+        
     }
-
-
-    /*public void mover(){
-        boolean b[][]=new boolean [5][5];
-        joe.move();
-        for(int i=0;i<=4;i++){
-            for(int j=0;j<=4;j++){
-                if(joe.canPickThing()==true){
-                    
-                    if(i==0 && j>0){
-                        joe.pickThing();
-                        b[i][j-1]=true;
-                    }
-                    if(i==1 && j>0){
-                        joe.pickThing();
-                        b[j-1][4]=true;
-                    }
-                    if(i==2){
-                        joe.pickThing();
-                        b[4][4-j]=true;
-                    }
-                    if(i==3 && j<4){
-                        joe.pickThing();
-                        b[4-j][0]=true;
-                    }
-                }
-                if (j==4){
-                    break;
-                }
-                joe.move();
-            }
-            if(i==3){break;}
-            for(int k=0;k<=2;k++){
-                joe.turnLeft();
-            }
-        }
-        System.out.println(joe.countThingsInBackpack());
-        joe.turnLeft();
-        joe.move();
-        joe.turnLeft();
-        for(int i=0;i<=5;i++){
-            joe.move();
-        }
-        joe.turnLeft();
-        for(int j=0; j<=3;j++){
-            joe.move();
-        }
-        for(int i=0;i<=4;i++){
-            for(int j=0;j<=4;j++){
-                if(i==0 && j>0){
-                    if(b[i][j-1]==true){joe.putThing();}
-                }
-                if(i==1 && j>0){
-                    if(b[j-1][4]==true){joe.putThing();}
-                }
-                if(i==2 && j<4){
-                    if(b[4][4-j]==true){joe.putThing();}
-                }
-                if(i==3 && j<4){
-                    if(b[4-j][0]==true){joe.putThing();}
-                }
-                if (j==4){
-                    break;
-                }
-                joe.move();
-            }
-            if(i<=2){
-            for(int k=0;k<=2;k++){
-                joe.turnLeft();
-            }}
+    
+    public void ponerPared(){
+        for(int i=0;i<5;i++){
+            this.pared = new Wall(this.un,i+5,1,Direction.WEST);
+            this.pared = new Wall(this.un,5,i+1,Direction.NORTH);
+            this.pared = new Wall(this.un,i+5,5,Direction.EAST);
+            if(i<4){this.pared = new Wall(this.un,9,i+2,Direction.SOUTH);}
             
+            this.pared = new Wall(this.un,i+2,7,Direction.WEST);
+            this.pared = new Wall(this.un,2,i+7,Direction.NORTH);
+            this.pared = new Wall(this.un,i+2,11,Direction.EAST);
+            if(i<4){this.pared = new Wall(this.un,6,i+8,Direction.SOUTH);}            
         }
     }
-*/
-
-public void mover(){
     
-    int x = 0; //Para manejar las filas
-      int y = 0; //Para manejar las columnas
-      int flag = 3;  //Bandera para saber que recorrido se debe realizar
-      int n = 0; //Contador de elementos
-      
-      //Total de elementos en la matriz
-      int elementos = this.a.length * this.a[0].length;
- 
-      // Recorrido en espiral
-      //System.out.println("\nMostrando recorrido en espiral");
-      while (n < elementos) {
-         //System.out.println("\nFlag : " + flag);
-         switch (flag) {
-         case 0: // Recorrido de izquierda a derecha
-             
-             this.joe.move();
-             for (int m = x; m <= this.a[0].length - y-1; m++) {
-               System.out.print(" " + this.a[x][m]);
-               if(this.joe.canPickThing()){
-                   this.joe.pickThing();
-                   this.a[x][m]=true;
-               }
-               this.joe.move();
-               n++;
-               
+    public void ladrillos(){
+        this.ball = new Thing(this.un,6,2);
+        this.ball = new Thing(this.un,6,4);
+        this.ball = new Thing(this.un,6,1);
+        this.ball = new Thing(this.un,6,5);
+        this.ball = new Thing(this.un,8,1);
+        this.ball = new Thing(this.un,8,5);
+        this.ball = new Thing(this.un,9,2);
+        this.ball = new Thing(this.un,9,4);                
+    } 
+              
+    public void memorizar(){
+        
+joe.move();
+for(int i=0; i<3; i++){joe.turnLeft();}
+    for(int r=0; r<2;r++){
+        if(r==1){joe.setColor(Color.BLUE);}
+        //repetir dentro de los cuadros
+        for(int k=5;k>0;k--){       
+            //mover fila
+            for(int i=0;i<5;i++){            
+                //recoger y obtener direccion
+                if(r==0){
+                    if(joe.canPickThing()==true){           
+                    this.l[k-1][i] = true; 
+                    joe.pickThing();                
+                    }
+                }
+                //colocar los ladrillos en otra cuadro
+                if(r==1){
+                    if(this.l[k-1][i]==true){
+                    joe.putThing();
+                    }
+                }
+                //mover en la fila
+                if(i<4){joe.move();}         
             }
-                        
-                     
-            flag++;
-            for (int i=0;i<3;i++){
-                 this.joe.turnLeft();
-             }
-            break;
- 
-            case 1: //Recorrido de arriba abajo
-         
-             
-             this.joe.move();        
-            for (int m = x + 1; m < this.a.length - x+1 ; m++) {
-               System.out.print(" " + this.a[m][this.a[0].length - 1 - y]);
-               if(this.joe.canPickThing()){
-                   this.joe.pickThing();
-                   this.a[m][this.a[0].length - 1 - y]=true;
-               }
-               this.joe.move();
-               
-               n++;
-               
+            //cambio de fila a izquierda
+            if(k==5||k==3){
+                joe.turnLeft();
+                joe.move();
+                joe.turnLeft();
             }
-                      
-            flag++;
-            for (int i=0;i<3;i++){
-                 this.joe.turnLeft();
-             }
-            break;
- 
-         case 2: //Recorrido de derecha a izquierda
-             
-             
-             this.joe.move();
-            for (int m = this.a[0].length - 1 - y; m >= y; m--) {
-               System.out.print(" " + this.a[this.a.length - 1 - x][m]);
-               if(this.joe.canPickThing()){
-                   this.joe.pickThing();
-                   this.a[this.a.length - 1 - x][m]=true;
-               }
-               this.joe.move();
-               n++;
-               
+            //cambio de fila a derecha
+            else if(k==4||k==2){
+                for(int i=0; i<3; i++){joe.turnLeft();}
+                joe.move();
+                for(int i=0; i<3; i++){joe.turnLeft();}
             }
-                     
-            flag++;
-            for (int i=0;i<3;i++){
-                 this.joe.turnLeft();
-             }
-            break;
- 
-         case 3: //Recorrido de abajo a arriba
-             
-             
-             this.joe.move();
-            for (int m = this.a.length - 1 - x; m >= x + 1; m--) {
-               System.out.print(" " + this.a[m][y]);
-               if(this.joe.canPickThing()){
-                   this.joe.pickThing();
-                   this.a[m][y]=true;
-               }
-               this.joe.move();
-               n++;
-               
-            }
-                
-             
-             
-            flag = 0;
-            //Se aumentan las filas y las columnas para un subnivel en el espiral
-            x++;
-            y++;
-            for (int i=0;i<3;i++){
-                 this.joe.turnLeft();
-             }
-            break;
-         } 
- 
-    }
-      this.joe.move();
+       
+        }
+        //salida joe
+        for(int i=0; i<2; i++){joe.turnLeft();}
+        for(int i=0; i<4; i++){joe.move();}
+        joe.turnLeft();
+        for(int i=0; i<5; i++){joe.move();}
+        //ubicar pos final
+        joe.turnLeft();
+        joe.move();
+        //salida a otro cuadro
+        if(r==0){        
+            for(int i=0; i<5; i++){joe.move();}
+            joe.turnLeft();
+            for(int i=0; i<4; i++){joe.move();}
+            for(int i=0; i<3; i++){joe.turnLeft();}
+        }
+     }
+    }    
 }
-}
+    

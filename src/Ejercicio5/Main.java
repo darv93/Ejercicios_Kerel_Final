@@ -11,26 +11,9 @@ package Ejercicio5;
  */
 public class Main {
     public static void main(String[] args){
-        Nuggets nu=new Nuggets();
-        nu.Go();
-        nu.Right();
-        nu.Left();
-        nu.Go();
-        nu.Left();
-        nu.Right();
-        nu.Round();
-        nu.Left();
-        nu.Right();
-        nu.Right();
-        nu.Go();
-        nu.Right();
-        nu.Left();
-        nu.Round();
-        nu.Right();
-        nu.Right();
-        nu.Left();
-        nu.Right();
-        nu.Left();
-        nu.Go();
+        Nuggets nu = new Nuggets();
+        nu.ponerPared();
+        nu.ponerNuggets();
+        nu.jugar();
     }
 }

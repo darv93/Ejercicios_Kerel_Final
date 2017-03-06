@@ -1,5 +1,5 @@
 
-package Futbol;
+package Ejercicio1;
 
 /**
  *
