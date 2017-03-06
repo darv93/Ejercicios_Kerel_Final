@@ -1,4 +1,4 @@
-package Futbol;
+package Ejercicio1;
 import becker.robots.*;
 
 

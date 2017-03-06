@@ -11,7 +11,9 @@ package Ejercicio4;
  */
 public class Main {
   public static void main(String[] args){
-    Histograma histo=new Histograma();
-        histo.x();
-  }
+    Histograma his = new Histograma();
+    his.numeros(4,3,2,7);
+    his.contar();
+    his.hacerCodigo();
+    }
 }

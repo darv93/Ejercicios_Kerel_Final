@@ -12,8 +12,12 @@ package Ejercicio5_1;
 public class Main {
     
     public static void main(String[] args){
-        Ladrillos prueba=new Ladrillos();
-        prueba.mover();
+        Ladrillos l = new Ladrillos();
+        l.ponerPared();
+        l.ladrillos();
+        l.memorizar();
+        
+      
     }
     
 }
